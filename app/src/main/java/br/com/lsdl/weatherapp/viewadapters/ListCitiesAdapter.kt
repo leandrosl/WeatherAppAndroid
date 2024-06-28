@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.lsdl.weatherapp.R
 import br.com.lsdl.weatherapp.models.City
 
-class ListCitiesAdapter(private val citiesList: List<City>)
+class ListCitiesAdapter(private var citiesList: List<City> = emptyList())
     : RecyclerView.Adapter<ListCitiesAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView
@@ -44,6 +44,11 @@ class ListCitiesAdapter(private val citiesList: List<City>)
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
         this.onClickListener = onItemClickListener
+    }
+
+    fun updateList(updatedList: List<City>) {
+        citiesList = updatedList
+        notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
