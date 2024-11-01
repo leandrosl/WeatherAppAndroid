@@ -56,7 +56,8 @@ class SearchCityFragment : Fragment() {
 
         citiesViewAdapter.setOnItemClickListener(object : ListCitiesAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, city: City) {
-                Toast.makeText(context, city.name, Toast.LENGTH_SHORT).show()
+                cityViewModel.selectCity(city)
+                parentFragmentManager.popBackStack()
             }
         })
     }
