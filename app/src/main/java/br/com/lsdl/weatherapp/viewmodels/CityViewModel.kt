@@ -14,4 +14,11 @@ class CityViewModel : ViewModel() {
         )
     )
     val cities: LiveData<List<City>> get() = _cities
+
+    private val _selectedCity = MutableLiveData<City?>()
+    val selectedCity: LiveData<City?> = _selectedCity
+
+    fun selectCity(city: City) {
+        _selectedCity.value = city
+    }
 }
