@@ -13,10 +13,32 @@
         android:paddingTop="16dp"
         android:textSize="32dp"
         android:textColor="@android:color/white"
-        android:text="São Paulo, SP - Brazil"
+        android:text="São Paulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cityState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32dp"
+        android:textColor="@android:color/white"
+        android:text="São Paulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cityName"/>
+
+    <TextView
+        android:id="@+id/cityCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32dp"
+        android:textColor="@android:color/white"
+        android:text="Brazil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cityState"/>
 
     <ImageView
         android:id="@+id/temperatureMood"
@@ -24,7 +46,7 @@
         android:layout_height="100dp"
         android:src="@android:drawable/stat_notify_missed_call"
         android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@id/cityName"
+        app:layout_constraintTop_toBottomOf="@id/cityCountry"
         app:layout_constraintBottom_toTopOf="@id/cityTemperature"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
