@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -45,7 +46,10 @@ class ShowTemperatureFragment : Fragment() {
 
         cityViewModel.selectedCity.observe(viewLifecycleOwner) { selectedCity ->
             selectedCity?.let {
-                Log.d("SELECTED_CITY", selectedCity.name)
+                Log.d("SELECTED_CITY", selectedCity.toString())
+                view.findViewById<TextView>(R.id.cityName).text = selectedCity.name
+                view.findViewById<TextView>(R.id.cityState).text = selectedCity.stateName
+                view.findViewById<TextView>(R.id.cityCountry).text = selectedCity.country
             }
         }
     }
