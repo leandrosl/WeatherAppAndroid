@@ -4,16 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.lsdl.weatherapp.models.City
+import br.com.lsdl.weatherapp.repositories.CityRepository
 
-class CityViewModel : ViewModel() {
-    private val _cities = MutableLiveData<List<City>>(
-        mutableListOf(
-            City("Belo Horizonte", "Minas Gerais", "Brazil"),
-            City("Rio de Janeiro", "Rio de Janeiro", "Brazil"),
-            City("São Paulo", "São Paulo", "Brazil")
-        )
-    )
-    val cities: LiveData<List<City>> get() = _cities
+class CityViewModel(private val repository: CityRepository) : ViewModel() {
+    val cities: LiveData<List<City>> get() = repository.cities
 
     private val _selectedCity = MutableLiveData<City?>()
     val selectedCity: LiveData<City?> = _selectedCity
