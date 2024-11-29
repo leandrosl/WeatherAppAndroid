@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
                 return true
             }
+            android.R.id.home -> {
+                supportFragmentManager.popBackStack()
+                return true
+            }
             else -> {
                 return super.onOptionsItemSelected(item)
             }
