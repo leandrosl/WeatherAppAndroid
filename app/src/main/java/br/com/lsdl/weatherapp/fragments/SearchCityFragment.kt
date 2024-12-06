@@ -4,20 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.lsdl.weatherapp.R
+import br.com.lsdl.weatherapp.WeatherApplication
+import br.com.lsdl.weatherapp.di.WeatherAppContainer
 import br.com.lsdl.weatherapp.models.City
 import br.com.lsdl.weatherapp.viewadapters.ListCitiesAdapter
 import br.com.lsdl.weatherapp.viewmodels.CityViewModel
 
 class SearchCityFragment : Fragment() {
     private lateinit var cityViewModel: CityViewModel
+
+    private lateinit var injectionContainer: WeatherAppContainer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,13 +34,15 @@ class SearchCityFragment : Fragment() {
 
         val activity = requireActivity() as AppCompatActivity
 
+        injectionContainer = (activity.application as WeatherApplication).injectionContainer
+
         val fragmentToolbar = view.findViewById<Toolbar>(R.id.toolbar)
 
         activity.setSupportActionBar(fragmentToolbar)
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        cityViewModel = ViewModelProvider(activity)[CityViewModel::class.java]
+        cityViewModel = injectionContainer.cityViewModel
 
         initListCitiesView(view)
     }
