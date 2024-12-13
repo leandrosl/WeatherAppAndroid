@@ -1,9 +1,12 @@
 package br.com.lsdl.weatherapp.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -45,6 +48,7 @@ class SearchCityFragment : Fragment() {
         cityViewModel = injectionContainer.cityViewModel
 
         initListCitiesView(view)
+        initSearchBar(view)
     }
 
     private fun initListCitiesView(view: View) {
@@ -62,6 +66,21 @@ class SearchCityFragment : Fragment() {
             override fun onItemClick(position: Int, city: City) {
                 cityViewModel.selectCity(city)
                 parentFragmentManager.popBackStack()
+            }
+        })
+    }
+
+    private fun initSearchBar(view: View) {
+        val toolbarSearchEditText: EditText = view.findViewById(R.id.search_city_edit_text)
+        toolbarSearchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (toolbarSearchEditText.text.toString().length > 1) {
+                    cityViewModel.filterCitiesByName(toolbarSearchEditText.text.toString())
+                }
             }
         })
     }
