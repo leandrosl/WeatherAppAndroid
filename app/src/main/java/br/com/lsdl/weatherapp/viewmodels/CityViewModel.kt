@@ -3,9 +3,10 @@ package br.com.lsdl.weatherapp.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.lsdl.weatherapp.models.City
 import br.com.lsdl.weatherapp.repositories.CityRepository
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 
 class CityViewModel(private val repository: CityRepository) : ViewModel() {
     private val _cities = MutableLiveData <List<City>>()
@@ -23,8 +24,8 @@ class CityViewModel(private val repository: CityRepository) : ViewModel() {
     }
 
     fun filterCitiesByName(name: String) {
-        runBlocking {
-           _cities.value = repository.getCitiesByName(name)
+        viewModelScope.launch {
+            _cities.value = repository.getCitiesByName(name)
         }
     }
 }
