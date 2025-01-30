@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.lsdl.weatherapp.models.City
 import br.com.lsdl.weatherapp.repositories.CityRepository
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CityViewModel(private val repository: CityRepository) : ViewModel() {
@@ -14,6 +16,8 @@ class CityViewModel(private val repository: CityRepository) : ViewModel() {
 
     private val _selectedCity = MutableLiveData<City?>()
     val selectedCity: LiveData<City?> = _selectedCity
+
+    private var filterCitiesJob: Job? = null
 
     init {
         _cities.value = repository.getCities()
@@ -24,8 +28,16 @@ class CityViewModel(private val repository: CityRepository) : ViewModel() {
     }
 
     fun filterCitiesByName(name: String) {
-        viewModelScope.launch {
-            _cities.value = repository.getCitiesByName(name)
+        filterCitiesJob?.cancel()
+
+        filterCitiesJob = viewModelScope.launch {
+            delay(500)
+
+            _cities.value = if (name.isEmpty()) {
+                repository.getCities()
+            } else {
+                repository.getCitiesByName(name)
+            }
         }
     }
 }
