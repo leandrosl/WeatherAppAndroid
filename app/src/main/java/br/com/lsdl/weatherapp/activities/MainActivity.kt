@@ -18,25 +18,4 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.main_activity_fragment_view, ShowTemperatureFragment())
             .commit()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.fragment_search_city_toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_app_settings -> {
-                Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
-                return true
-            }
-            android.R.id.home -> {
-                supportFragmentManager.popBackStack()
-                return true
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
-    }
 }
