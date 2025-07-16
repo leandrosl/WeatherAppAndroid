@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blueAccent">#448AFF</color>
     <color name="darkGray">#5c5b5b</color>
+    <color name="card_gray_with_opacity">#595c5b5b</color>
 </resources>
