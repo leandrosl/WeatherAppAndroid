@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "br.com.lsdl.weatherapp"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "br.com.lsdl.weatherapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -48,7 +48,7 @@ dependencies {
 
     implementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
-
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
