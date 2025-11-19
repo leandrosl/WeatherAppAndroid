@@ -1,21 +1,18 @@
 package br.com.lsdl.weatherapp.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import br.com.lsdl.weatherapp.R
-import br.com.lsdl.weatherapp.fragments.ShowTemperatureFragment
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
+import br.com.lsdl.weatherapp.screens.ShowTemperatureScreen
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.main_activity_fragment_view, ShowTemperatureFragment())
-            .commit()
+        setContent {
+            MaterialTheme {
+                ShowTemperatureScreen()
+            }
+        }
     }
 }
